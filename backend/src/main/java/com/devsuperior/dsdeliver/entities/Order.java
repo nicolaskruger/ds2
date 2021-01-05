@@ -1,18 +1,26 @@
 package com.devsuperior.dsdeliver.entities;
 
+import javax.persistence.*;
 import java.time.Instant;
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
+@Entity
+@Table(name = "tb_order")
 public class Order {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String address;
     private Double latitude;
     private Double longitude;
     private Instant moment;
     private OrderStatus status;
-    private List<Product> poducts;
+    @ManyToMany
+    @JoinTable(name = "tb_order_product",
+        joinColumns =  @JoinColumn(name = "order_id"),
+            inverseJoinColumns = @JoinColumn(name = "product_id")
+    )
+    private Set<Product> poducts;
 
     public Order(Long id, String address, Double latitude, Double longitude, Instant moment, OrderStatus status) {
         this.id = id;
@@ -21,7 +29,11 @@ public class Order {
         this.longitude = longitude;
         this.moment = moment;
         this.status = status;
-        this.poducts = new LinkedList<>();
+        this.poducts = new HashSet<>();
+    }
+
+    public Order() {
+        this.poducts = new HashSet<>();
     }
 
     private void add(Product p){
@@ -76,7 +88,7 @@ public class Order {
         return status;
     }
 
-    public List<Product> getPoducts() {
+    public Set<Product> getPoducts() {
         return poducts;
     }
 }
