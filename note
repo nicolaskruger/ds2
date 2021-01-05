@@ -1,0 +1,8 @@
+1° ir no site https://start.spring.io/
+ e inicializer o projeto
+ * Project: Maven Project
+ * Language: Java
+ * Spring Boot: 2.4.1
+ * packaging: jar
+ * Java: 11
+ * dependences: web
