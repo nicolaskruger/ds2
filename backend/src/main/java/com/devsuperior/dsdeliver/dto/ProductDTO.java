@@ -10,6 +10,31 @@ public class ProductDTO implements Serializable {
     private Long id;
     private String name;
     private Double price;
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public String getImageUri() {
+        return imageUri;
+    }
+
     private String description;
     private String imageUri;
 
